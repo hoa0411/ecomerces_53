@@ -1,0 +1,40 @@
+<div class="container margin-slide">
+  <h2>Shopping Cart</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total price</th>
+        <th>Del</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @array.each do |n| %>
+        <tr>
+          <td><%= n.name %></td>
+          <td>
+            <%= form_tag update_cart_path(product_id: n.id), method: :PUT do %>
+
+              <%= text_field_tag :quantity, session[:cart][n.id.to_s] %>
+              <%= submit_tag "Edit quantity", class: "btn btn-success" %>
+            <% end %>
+          </td>
+          <td><%= n.price %></td>
+          <td><%= n.price * session[:cart][n.id.to_s]%></td>
+          <td><%= link_to "delete", delete_cart_path(product_id: n.id), method: :DELETE%></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td colspan="2">
+            <%= link_to "CHECKOUT", order_details_path, method: :POST %>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+<%#= link_to "huy session", destroy_cart_path, method: :DELETE%>

@@ -1,6 +1,12 @@
-13.times do |n|
-  Category.create!(name: "iphone - #{n}")
-end
+Category.create!(name: "IPHONE")
+Category.create!(name: "SAMSUNG")
+Category.create!(name: "NOKIA")
+Category.create!(name: "OPPO")
+Category.create!(name: "XIAOMI")
+Category.create!(name: "MIBISTAR")
+Category.create!(name: "SONY")
+Category.create!(name: "HUAWAI")
+Category.create!(name: "HTC")
 
 categories = Category.order(:created_at)
 
@@ -28,10 +34,8 @@ users = User.order(name: :DESC).take(20)
 users.each { |user| user.orders.create!(order_date: Time.zone.now, status: false )}
 
 Order.all.each do |order|
-  order.order_details.create! product_id: rand(Product.count) + 1, quantity: rand(100) + 1
+  order.order_details.create! product_id: rand(Product.count) + 1, quantity: rand(20) + 1
 end
 
 products = Product.all
 products.each { |product| product.images.create!(url: "abc.jpg") }
-
-
