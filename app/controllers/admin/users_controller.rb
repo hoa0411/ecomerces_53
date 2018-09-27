@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  load_and_authorize_resource
   layout "admin"
 
   before_action :load_user, except: %i(index new create)

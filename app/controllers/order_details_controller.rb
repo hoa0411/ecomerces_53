@@ -1,4 +1,5 @@
 class OrderDetailsController < ApplicationController
+  load_and_authorize_resource
   def create
     if session[:user_id].present?
       ActiveRecord::Base.transaction do

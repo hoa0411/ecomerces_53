@@ -1,4 +1,5 @@
 class Admin::CategoriesController < ApplicationController
+  load_and_authorize_resource
   layout "admin"
 
   before_action :load_category, except: %i(index new create)
